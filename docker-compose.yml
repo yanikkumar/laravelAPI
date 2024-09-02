@@ -1,5 +1,12 @@
 version: '4.3'
 services:
+    frontend:
+        image: antoniopapa1991/frontend
+        depends_on:
+            - backend
+        ports:
+            - 8080:8080
+
     backend:
         build:
             context: .
@@ -15,10 +22,10 @@ services:
         image: mysql
         environment:
             MYSQL_ROOT_PASSWORD:
-            MYSQL_USER: root
             MYSQL_PASSWORD:
             MYSQL_DATABASE: laravel_api
+            MYSQL_ALLOW_EMPTY_PASSWORD: true
         ports:
-            - "3306:3306"
+            - "33066:3306"
         volumes:
             - ./storage/dbdata:/var/lib/mysql
