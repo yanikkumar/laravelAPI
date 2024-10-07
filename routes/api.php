@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/users/password', [AuthController::class, 'updatePassword']);
 
     Route::apiResource('/users', UserController::class);
+
+    Route::apiResource('/roles', UserController::class);
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
 });
