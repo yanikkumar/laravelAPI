@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/users', UserController::class);
 
-    Route::apiResource('/roles', UserController::class);
+    Route::apiResource('/roles', RoleController::class);
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
 });
