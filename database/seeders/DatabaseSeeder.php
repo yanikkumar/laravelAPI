@@ -14,31 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::factory()->create(['name' => 'Admin']);
-        Role::factory()->create(['name' => 'Editor']);
-        Role::factory()->create(['name' => 'Viewer']);
-
-        User::factory()->create([
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@laravel-api.com',
-            'role_id' => 1,
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class
         ]);
-
-        User::factory()->create([
-            'first_name' => 'Editor',
-            'last_name' => 'User',
-            'email' => 'editor@laravel-api.com',
-            'role_id' => 2,
-        ]);
-
-        User::factory()->create([
-            'first_name' => 'View',
-            'last_name' => 'User',
-            'email' => 'viewer@laravel-api.com',
-            'role_id' => 3,
-        ]);
-
-        User::factory(20)->create();
     }
 }
