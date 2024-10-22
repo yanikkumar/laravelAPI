@@ -16,4 +16,8 @@ class Order extends Model
     public function getNameAttribute() {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function getTotalAttribute() {
+        return $this->orderItems->sum(fn(OrderItem $orderItem) => $orderItem->quantity * $orderItem->price);
+    }
 }

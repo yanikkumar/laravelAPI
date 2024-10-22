@@ -18,6 +18,7 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'total_price' => $this->total,
             'order_items' => OrderItemResource::collection($this->whenLoaded('orderItems')),
         ];
     }
