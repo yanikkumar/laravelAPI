@@ -55,6 +55,15 @@ class AuthController extends Controller
         return $response->withCookie($cookie);
     }
 
+    /**
+     * @OA\Get (path="/user",
+     *     security={{"bearerAuth":{}}},
+     *       tags={"Profile"},
+     *     @OA\Response(response="200",
+     *     description="Authenticated User"
+     *     )
+     *    )
+     */
     public function user(Request $request)
     {
         $user = $request->user();
@@ -70,6 +79,19 @@ class AuthController extends Controller
         ])->withCookie($cookie);
     }
 
+    /**
+     * @OA\Put (path="/user/info",
+     *     security={{"bearerAuth":{}}},
+     *        tags={"Profile"},
+     *     @OA\Response(response="202",
+     *     description="User Info Update"
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *           @OA\JsonContent(ref="#/components/schemas/UpdateInfoRequest")
+     *      )
+     *    )
+     */
     public function updateInfo(UpdateInfoRequest $request)
     {
         $user = $request->user();
@@ -82,6 +104,19 @@ class AuthController extends Controller
         return response(new UserResource($user), Response::HTTP_ACCEPTED);
     }
 
+    /**
+     * @OA\Put (path="/user/password",
+     *     security={{"bearerAuth":{}}},
+     *      tags={"Profile"},
+     *     @OA\Response(response="202",
+     *     description="User Password Update"
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *           @OA\JsonContent(ref="#/components/schemas/UpdatePasswordRequest")
+     *      )
+     *    )
+     */
     public function updatePassword(UpdatePasswordRequest $request)
     {
         $user = $request->user();

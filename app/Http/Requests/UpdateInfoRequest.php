@@ -4,8 +4,37 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema (
+ *     title="Update user info request",
+ *     description="Update user info request body data",
+ * )
+ */
 class UpdateInfoRequest extends FormRequest
 {
+    /**
+     * @OA\Property (
+     *     title="fist_name"
+     * )
+     * @var string
+     */
+    public $first_name;
+
+    /**
+     * @OA\Property (
+     *     title="last_name"
+     * )
+     * @var string
+     */
+    public $last_name;
+
+    /**
+     * @OA\Property (
+     *     title="email"
+     * )
+     * @var string
+     */
+    public $email;
     /**
      * Determine if the user is authorized to make this request.
      */

@@ -20,8 +20,85 @@
         }
     ],
     "paths": {
+        "/user": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "operationId": "8f60355fe45caf090eec729e26434da4",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated User"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/user/info": {
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "operationId": "06958ee4e97120f131a2bfd9657165cd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateInfoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "User Info Update"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/user/password": {
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "operationId": "d8ea7d5c62a91478d6ea91a5816713fa",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "User Password Update"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/users": {
             "get": {
+                "tags": [
+                    "Users"
+                ],
                 "operationId": "7208c29037df2b8bb02499ba39ed8a78",
                 "parameters": [
                     {
@@ -45,6 +122,9 @@
                 ]
             },
             "post": {
+                "tags": [
+                    "Users"
+                ],
                 "operationId": "262eb5ca1fdea354023c0a8870442c1e",
                 "requestBody": {
                     "required": true,
@@ -70,6 +150,9 @@
         },
         "/users/{id}": {
             "get": {
+                "tags": [
+                    "Users"
+                ],
                 "operationId": "6946bbab7898f59a09e3c8e529a38907",
                 "parameters": [
                     {
@@ -94,6 +177,9 @@
                 ]
             },
             "put": {
+                "tags": [
+                    "Users"
+                ],
                 "operationId": "05028d02ea3e9a99abd6260cfe05b179",
                 "parameters": [
                     {
@@ -128,6 +214,9 @@
                 ]
             },
             "delete": {
+                "tags": [
+                    "Users"
+                ],
                 "operationId": "b3d28da5dc9de7fc1bd425f93b54ff7b",
                 "parameters": [
                     {
@@ -155,6 +244,40 @@
     },
     "components": {
         "schemas": {
+            "UpdateInfoRequest": {
+                "title": "Update user info request",
+                "description": "Update user info request body data",
+                "properties": {
+                    "first_name": {
+                        "title": "fist_name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "last_name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "email",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdatePasswordRequest": {
+                "title": "Update user password request",
+                "description": "Update user password request body data",
+                "properties": {
+                    "password": {
+                        "title": "password",
+                        "type": "string"
+                    },
+                    "password_confirm": {
+                        "title": "password_confirm",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "UpdateUserRequest": {
                 "title": "Update user request",
                 "description": "Update user request body data",
@@ -208,5 +331,15 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Profile",
+            "description": "Profile"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
 }
