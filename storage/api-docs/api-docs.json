@@ -1,0 +1,28 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel API",
+        "description": "Simple role based authentication API Documentation in Laravel 11.x",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "admin@laravel-api.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users": {
+            "get": {
+                "operationId": "7208c29037df2b8bb02499ba39ed8a78",
+                "responses": {
+                    "200": {
+                        "description": "Uesr Collection"
+                    }
+                }
+            }
+        }
+    }
+}

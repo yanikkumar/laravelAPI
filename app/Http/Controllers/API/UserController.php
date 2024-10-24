@@ -14,6 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    /**
+     * @OA\Get (path="/users",
+     *     @OA\Response(response="200",
+     *     description="Uesr Collection"
+     *      )
+     *    )
+     */
     public function index()
     {
         Gate::authorize('view', 'users');
@@ -24,13 +31,13 @@ class UserController extends Controller
     {
         Gate::authorize('edit', 'users');
         $user = User::create($request->only(
-            'first_name',
-            'last_name',
-            'email',
-            'role_id'
-        ) + [
-            'password' => Hash::make('password')
-        ]);
+                'first_name',
+                'last_name',
+                'email',
+                'role_id'
+            ) + [
+                'password' => Hash::make('password')
+            ]);
 
         return response(new UserResource($user), Response::HTTP_CREATED);
     }
