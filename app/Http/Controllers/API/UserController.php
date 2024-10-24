@@ -19,7 +19,15 @@ class UserController extends Controller
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(response="200",
      *     description="Users Collection"
-     *      )
+     *      ),
+     *     @OA\Parameter (
+     *         name="page",
+     *         description="Pagination Page",
+     *         in="query",
+     *         @OA\Schema (
+     *             type="integer"
+     *         )
+     *     )
      *    )
      */
     public function index()
@@ -43,6 +51,23 @@ class UserController extends Controller
         return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
+    /**
+     * @OA\Get (path="/users/{id}",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(response="200",
+     *     description="User"
+     *      ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         description="Uesr ID",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema (
+     *             type="integer"
+     *         )
+     *     )
+     *    )
+     */
     public function show(string $id)
     {
         Gate::authorize('edit', 'users');
