@@ -43,6 +43,29 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "post": {
+                "operationId": "262eb5ca1fdea354023c0a8870442c1e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User Create "
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/users/{id}": {
@@ -61,7 +84,65 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "User"
+                        "description": "User Show"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "operationId": "05028d02ea3e9a99abd6260cfe05b179",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "User Update"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "b3d28da5dc9de7fc1bd425f93b54ff7b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Uesr ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User Delete"
                     }
                 },
                 "security": [
@@ -73,6 +154,54 @@
         }
     },
     "components": {
+        "schemas": {
+            "UpdateUserRequest": {
+                "title": "Update user request",
+                "description": "Update user request body data",
+                "properties": {
+                    "first_name": {
+                        "title": "fist_name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "last_name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "email",
+                        "type": "string"
+                    },
+                    "role_id": {
+                        "title": "role_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "UserCreateRequest": {
+                "title": "Store user request",
+                "description": "Store user request body data",
+                "properties": {
+                    "first_name": {
+                        "title": "fist_name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "last_name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "email",
+                        "type": "string"
+                    },
+                    "role_id": {
+                        "title": "role_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

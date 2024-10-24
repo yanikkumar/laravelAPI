@@ -36,6 +36,18 @@ class UserController extends Controller
         return UserResource::collection(User::with('role')->paginate());
     }
 
+    /**
+     * @OA\Post (path="/users",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(response="201",
+     *     description="User Create "
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserCreateRequest")
+     *     )
+     *    )
+     */
     public function store(UserCreateRequest $request)
     {
         Gate::authorize('edit', 'users');
@@ -55,7 +67,7 @@ class UserController extends Controller
      * @OA\Get (path="/users/{id}",
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(response="200",
-     *     description="User"
+     *     description="User Show"
      *      ),
      *     @OA\Parameter (
      *         name="id",
@@ -74,6 +86,27 @@ class UserController extends Controller
         return new UserResource(User::with('role')->find($id));
     }
 
+    /**
+     * @OA\Put (path="/users/{id}",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(response="202",
+     *     description="User Update"
+     *      ),
+     *      @OA\Parameter (
+     *          name="id",
+     *          description="User Id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema (
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *           @OA\JsonContent(ref="#/components/schemas/UpdateUserRequest")
+     *      )
+     *    )
+     */
     public function update(UpdateUserRequest $request, string $id)
     {
         Gate::authorize('edit', 'users');
@@ -89,6 +122,23 @@ class UserController extends Controller
         return response(new UserResource($user), Response::HTTP_ACCEPTED);
     }
 
+    /**
+     * @OA\Delete (path="/users/{id}",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(response="204",
+     *     description="User Delete"
+     *      ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         description="Uesr ID",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema (
+     *             type="integer"
+     *         )
+     *     )
+     *    )
+     */
     public function destroy(string $id)
     {
         Gate::authorize('edit', 'users');
