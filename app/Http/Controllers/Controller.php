@@ -15,11 +15,17 @@ namespace App\Http\Controllers;
  *          name="Apache 2.0",
  *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
  *      ),
+ *  )
  *      @OA\Server(
- *          url="URL_CONST_HOST",
+ *          url=L5_SWAGGER_CONST_HOST,
  *          description="Admin API Service"
  *      )
- * )
+ *
+ *      @OA\SecurityScheme(
+ *           securityScheme="bearerAuth",
+ *           type="http",
+ *           scheme="bearer"
+ *       )
  */
 abstract class Controller
 {
